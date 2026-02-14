@@ -1,0 +1,27 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Windows ADS sidecar files from downloaded CSVs
+*.Zone.Identifier
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.python-version
+
+# Tooling caches
+.cache/
+
+# dbt artifacts
+dbt_packages/
+target/
+logs/
+
+# DuckDB local files
+*.duckdb
+*.duckdb.wal

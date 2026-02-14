@@ -1,0 +1,13 @@
+[project]
+name = "rnic-copro-analytics"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "dbt-core>=1.11.5",
+    "dbt-duckdb>=1.10.0",
+    "pre-commit>=4.5.1",
+    "sqlfluff>=3.4.2",
+    "sqlfluff-templater-dbt>=3.4.2",
+]
