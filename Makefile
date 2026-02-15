@@ -6,7 +6,8 @@ SQLFLUFF_CONFIG := .sqlfluff
 SQL_MODELS_PATH := rnic_dbt/models
 
 .PHONY: help install precommit-install precommit-run precommit-run-all \
-	sqlfluff-lint sqlfluff-fix dbt-deps dbt-parse dbt-run dbt-test dbt-build
+	sqlfluff-lint sqlfluff-fix dbt-deps dbt-parse dbt-run dbt-test dbt-build \
+	dbt-debug dbt-docs-generate dbt-docs-serve
 
 help:
 	@echo "Targets disponibles:"
@@ -21,6 +22,9 @@ help:
 	@echo "  make dbt-run            - Execute les models dbt"
 	@echo "  make dbt-test           - Execute les tests dbt"
 	@echo "  make dbt-build          - Execute run + test dbt"
+	@echo "  make dbt-debug          - Verifie la configuration dbt"
+	@echo "  make dbt-docs-generate  - Genere la documentation dbt"
+	@echo "  make dbt-docs-serve     - Sert la documentation dbt localement"
 
 install:
 	uv sync
@@ -54,3 +58,12 @@ dbt-test:
 
 dbt-build:
 	uv run dbt build --project-dir $(DBT_PROJECT_DIR) --profiles-dir $(DBT_PROFILES_DIR)
+
+dbt-debug:
+	uv run dbt debug --project-dir $(DBT_PROJECT_DIR) --profiles-dir $(DBT_PROFILES_DIR)
+
+dbt-docs-generate:
+	uv run dbt docs generate --project-dir $(DBT_PROJECT_DIR) --profiles-dir $(DBT_PROFILES_DIR)
+
+dbt-docs-serve:
+	uv run dbt docs serve --project-dir $(DBT_PROJECT_DIR) --profiles-dir $(DBT_PROFILES_DIR)
