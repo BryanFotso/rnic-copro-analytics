@@ -1,4 +1,4 @@
-{{ config(materialized='view', alias='RNIC2025') }}
+{{ config(alias='RNIC2025') }}
 
 select
     *,

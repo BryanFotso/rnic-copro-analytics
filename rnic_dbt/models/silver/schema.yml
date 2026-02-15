@@ -1,0 +1,94 @@
+version: 2
+
+models:
+  - name: silver_rnic
+    description: >
+      Modele silver RNIC consolide (2022-2025) issu de l'union des modeles bronze,
+      avec harmonisation des noms de colonnes et typage des champs.
+    columns:
+      - name: numero_d_immatriculation
+        description: Numero unique d'immatriculation de la copropriete.
+        tests:
+          - not_null
+      - name: epci
+        description: Etablissement public de cooperation intercommunale.
+      - name: commune
+        description: Code commune associe a l'adresse de reference.
+      - name: date_d_immatriculation
+        description: Date de premiere immatriculation de la copropriete.
+      - name: date_de_la_derniere_maj
+        description: Date de derniere mise a jour des informations.
+      - name: type_de_syndic
+        description: Categorie de syndic (benevole, professionnel, non connu).
+      - name: identification_representant_legal
+        description: Identification du representant legal de la copropriete.
+      - name: siret_du_representant_legal
+        description: SIRET du representant legal, harmonise entre millesimes.
+      - name: code_ape
+        description: Code APE du representant legal.
+      - name: commune_du_representant_legal
+        description: Commune du representant legal.
+      - name: mandat_en_cours
+        description: Statut du mandat dans la copropriete.
+      - name: date_de_fin_du_dernier_mandat
+        description: Date de fin du dernier mandat declare.
+      - name: nom_usage_copropriete
+        description: Nom d'usage de la copropriete.
+      - name: adresse_de_reference
+        description: Adresse de reference issue du reglement de copropriete.
+      - name: code_postal_adresse_de_reference
+        description: Code postal de l'adresse de reference.
+      - name: commune_adresse_de_reference
+        description: Commune de l'adresse de reference.
+      - name: longitude
+        description: Longitude geolocalisee.
+      - name: latitude
+        description: Latitude geolocalisee.
+      - name: date_du_reglement_de_copropriete
+        description: Date figurant sur le reglement de copropriete.
+      - name: nombre_total_de_lots
+        description: Nombre total de lots de la copropriete.
+      - name: nombre_total_lots_habitation_bureaux_commerces
+        description: Nombre total de lots a usage habitation/bureaux/commerces.
+      - name: nombre_lots_habitation
+        description: Nombre de lots a usage d'habitation.
+      - name: nombre_lots_stationnement
+        description: Nombre de lots de stationnement.
+      - name: periode_de_construction
+        description: Periode de construction de l'immeuble.
+      - name: nom_qp_2015
+        description: Nom du quartier prioritaire (version 2015), harmonise avec nom_qp historique.
+      - name: code_qp_2015
+        description: Code du quartier prioritaire (version 2015), harmonise avec code_qp historique.
+      - name: nom_qp_2024
+        description: Nom du quartier prioritaire (version 2024).
+      - name: code_qp_2024
+        description: Code du quartier prioritaire (version 2024).
+      - name: copro_dans_acv
+        description: Indicateur d'appartenance au dispositif ACV.
+      - name: copro_dans_pvd
+        description: Indicateur d'appartenance au dispositif PVD.
+      - name: code_de_pdp
+        description: Code de Plan de sauvegarde de la copropriete (PDP).
+      - name: copro_dans_pdp
+        description: Indicateur d'appartenance a un PDP.
+      - name: copro_aidee
+        description: Indicateur de copropriete aidee.
+      - name: code_officiel_commune
+        description: Code officiel de la commune.
+      - name: nom_officiel_commune
+        description: Nom officiel de la commune.
+      - name: code_officiel_departement
+        description: Code officiel du departement.
+      - name: nom_officiel_departement
+        description: Nom officiel du departement.
+      - name: code_officiel_region
+        description: Code officiel de la region.
+      - name: nom_officiel_region
+        description: Nom officiel de la region.
+      - name: source_file
+        description: Fichier CSV source (traceabilite technique).
+      - name: source_year
+        description: Annee de snapshot issue du chemin source.
+      - name: source_quarter
+        description: Trimestre de snapshot issu du nom de fichier.

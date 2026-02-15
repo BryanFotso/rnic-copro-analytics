@@ -33,3 +33,5 @@ models:
   rnic_dbt:
     bronze:
       +materialized: view
+    silver:
+      +materialized: table
