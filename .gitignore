@@ -30,3 +30,5 @@ logs/
 *.csv
 *.parquet
 *.xlsx
+# Metabase local state
+metabase-data/
