@@ -3,11 +3,11 @@ rnic_dbt:
     dev:
       type: duckdb
       path: /home/chris/rnic-copro-analytics/data/prod/dev.duckdb
-      threads: 1
+      threads: 4
 
     prod:
       type: duckdb
       path: /home/chris/rnic-copro-analytics/data/prod/prod.duckdb
-      threads: 4
+      threads: 5
 
   target: dev

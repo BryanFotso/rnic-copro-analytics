@@ -20,8 +20,12 @@ models:
         description: Date de derniere mise a jour des informations.
       - name: type_de_syndic
         description: Categorie de syndic (benevole, professionnel, non connu).
+      - name: type_de_syndic_benevole_professionnel_non_connu
+        description: Libelle brut normalise du type de syndic (mapping RNIC).
       - name: identification_representant_legal
         description: Identification du representant legal de la copropriete.
+      - name: raison_sociale_du_representant_legal
+        description: Raison sociale du representant legal (si disponible).
       - name: siret_du_representant_legal
         description: SIRET du representant legal, harmonise entre millesimes.
       - name: code_ape
@@ -46,6 +50,12 @@ models:
         description: Latitude geolocalisee.
       - name: date_du_reglement_de_copropriete
         description: Date figurant sur le reglement de copropriete.
+      - name: nombre_d_aful_auxquelles_est_rattache_le_syndicat_de_copropriet
+        description: Nombre d'AFUL rattachees au syndicat de coproprietaires.
+      - name: nombre_d_asl_auxquelles_est_rattache_le_syndicat_de_coproprieta
+        description: Nombre d'ASL rattachees au syndicat de coproprietaires.
+      - name: nombre_d_unions_de_syndicats_auxquelles_est_rattache_le_syndica
+        description: Nombre d'unions de syndicats rattachees au syndicat de coproprietaires.
       - name: nombre_total_de_lots
         description: Nombre total de lots de la copropriete.
       - name: nombre_total_lots_habitation_bureaux_commerces
@@ -56,6 +66,32 @@ models:
         description: Nombre de lots de stationnement.
       - name: periode_de_construction
         description: Periode de construction de l'immeuble.
+      - name: nombre_de_parcelles_cadastrales
+        description: Nombre de parcelles cadastrales associees.
+      - name: prefixe_1
+        description: Prefixe cadastral de la parcelle 1.
+      - name: section_1
+        description: Section cadastrale de la parcelle 1.
+      - name: numero_parcelle_1
+        description: Numero cadastral de la parcelle 1.
+      - name: reference_cadastrale_1
+        description: Reference cadastrale complete de la parcelle 1.
+      - name: prefixe_2
+        description: Prefixe cadastral de la parcelle 2.
+      - name: section_2
+        description: Section cadastrale de la parcelle 2.
+      - name: numero_parcelle_2
+        description: Numero cadastral de la parcelle 2.
+      - name: reference_cadastrale_2
+        description: Reference cadastrale complete de la parcelle 2.
+      - name: prefixe_3
+        description: Prefixe cadastral de la parcelle 3.
+      - name: section_3
+        description: Section cadastrale de la parcelle 3.
+      - name: numero_parcelle_3
+        description: Numero cadastral de la parcelle 3.
+      - name: reference_cadastrale_3
+        description: Reference cadastrale complete de la parcelle 3.
       - name: nom_qp_2015
         description: Nom du quartier prioritaire (version 2015), harmonise avec nom_qp historique.
       - name: code_qp_2015
@@ -78,10 +114,18 @@ models:
         description: Code officiel de la commune.
       - name: nom_officiel_commune
         description: Nom officiel de la commune.
+      - name: code_officiel_epci
+        description: Code officiel de l'EPCI.
+      - name: nom_officiel_epci
+        description: Nom officiel de l'EPCI.
       - name: code_officiel_departement
         description: Code officiel du departement.
       - name: nom_officiel_departement
         description: Nom officiel du departement.
+      - name: code_officiel_arrondissement_commune
+        description: Code officiel de l'arrondissement communal.
+      - name: nom_officiel_arrondissement_commune
+        description: Nom officiel de l'arrondissement communal.
       - name: code_officiel_region
         description: Code officiel de la region.
       - name: nom_officiel_region

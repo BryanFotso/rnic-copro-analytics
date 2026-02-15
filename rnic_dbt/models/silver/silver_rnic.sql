@@ -34,12 +34,24 @@ normalized as (
             cast("type_de_syndic_benevole_professionnel_non_connu" as varchar)
         ) as type_de_syndic,
         coalesce(
+            cast("Type de syndic : bénévole / professionnel / non connu" as varchar),
+            cast("type_de_syndic_benevole_professionnel_non_connu" as varchar)
+        ) as type_de_syndic_benevole_professionnel_non_connu,
+        coalesce(
             cast(
                 "Identification du représentant légal  (raison sociale et le numéro SIRET du syndic professionnel ou Civilité/prénom/ nom du syndic bénévole ou coopératif)"
                 as varchar
             ),
             cast("identification_du_representant_legal_raison_sociale_et_le_numer" as varchar)
         ) as identification_representant_legal,
+        coalesce(
+            cast(
+                "Identification du représentant légal  (raison sociale et le numéro SIRET du syndic professionnel ou Civilité/prénom/ nom du syndic bénévole ou coopératif)"
+                as varchar
+            ),
+            cast("identification_du_representant_legal_raison_sociale_et_le_numer" as varchar)
+        ) as identification_du_representant_legal_raison_sociale_et_le_numer,
+        cast("raison_sociale_du_representant_legal" as varchar) as raison_sociale_du_representant_legal,
         coalesce(
             cast("SIRET du représentant légal" as varchar),
             cast("Siret représentant légal (si existe)" as varchar),
@@ -55,6 +67,10 @@ normalized as (
             cast("mandat_en_cours_dans_la_copropriete" as varchar)
         ) as mandat_en_cours,
         coalesce(
+            cast("Mandat en cours dans la copropriété" as varchar),
+            cast("mandat_en_cours_dans_la_copropriete" as varchar)
+        ) as mandat_en_cours_dans_la_copropriete,
+        coalesce(
             try_cast("Date de fin du dernier mandat" as date),
             try_cast("date_de_fin_du_dernier_mandat" as date),
             try_strptime(cast("Date de fin du dernier mandat" as varchar), '%d/%m/%Y')::date,
@@ -64,6 +80,10 @@ normalized as (
             cast("Nom d’usage de la copropriété" as varchar),
             cast("nom_d_usage_de_la_copropriete" as varchar)
         ) as nom_usage_copropriete,
+        coalesce(
+            cast("Nom d’usage de la copropriété" as varchar),
+            cast("nom_d_usage_de_la_copropriete" as varchar)
+        ) as nom_d_usage_de_la_copropriete,
         coalesce(cast("Adresse de référence" as varchar), cast("adresse_de_reference" as varchar)) as adresse_de_reference,
         coalesce(
             cast("Numéro et Voie (adresse de référence)" as varchar),
@@ -84,8 +104,25 @@ normalized as (
             try_cast("Nombre d'adresses complémentaires" as integer),
             try_cast("nombre_d_adresses_complementaires" as integer)
         ) as nombre_d_adresses_complementaires,
+        coalesce(
+            try_cast("Nombre d’AFUL auxquelles est rattaché le syndicat de copropriétaires" as integer),
+            try_cast("nombre_d_aful_auxquelles_est_rattache_le_syndicat_de_copropriet" as integer)
+        ) as nombre_d_aful_auxquelles_est_rattache_le_syndicat_de_copropriet,
+        coalesce(
+            try_cast("Nombre d’ASL auxquelles est rattaché le syndicat de copropriétaires" as integer),
+            try_cast("nombre_d_asl_auxquelles_est_rattache_le_syndicat_de_coproprieta" as integer)
+        ) as nombre_d_asl_auxquelles_est_rattache_le_syndicat_de_coproprieta,
+        coalesce(
+            try_cast(
+                "Nombre d’Unions de syndicats auxquelles est rattaché le syndicat de copropriétaires"
+                as integer
+            ),
+            try_cast("nombre_d_unions_de_syndicats_auxquelles_est_rattache_le_syndica" as integer)
+        ) as nombre_d_unions_de_syndicats_auxquelles_est_rattache_le_syndica,
         coalesce(try_cast("long" as double), try_cast("long" as double)) as longitude,
         coalesce(try_cast("lat" as double), try_cast("lat" as double)) as latitude,
+        coalesce(try_cast("long" as double), try_cast("long" as double)) as long,
+        coalesce(try_cast("lat" as double), try_cast("lat" as double)) as lat,
         coalesce(
             try_cast("Date du règlement de copropriété" as date),
             try_cast("date_du_reglement_de_copropriete" as date),
@@ -99,22 +136,42 @@ normalized as (
             cast("syndicat_principal_ou_syndicat_secondaire" as varchar)
         ) as syndicat_principal_ou_secondaire,
         coalesce(
+            cast("Syndicat principal ou syndicat secondaire" as varchar),
+            cast("syndicat_principal_ou_syndicat_secondaire" as varchar)
+        ) as syndicat_principal_ou_syndicat_secondaire,
+        coalesce(
             cast("Si secondaire, n° d’immatriculation du principal" as varchar),
             cast("si_secondaire_n_d_immatriculation_du_principal" as varchar)
         ) as immatriculation_principal,
+        coalesce(
+            cast("Si secondaire, n° d’immatriculation du principal" as varchar),
+            cast("si_secondaire_n_d_immatriculation_du_principal" as varchar)
+        ) as si_secondaire_n_d_immatriculation_du_principal,
         try_cast("Nombre total de lots" as integer) as nombre_total_de_lots,
         coalesce(
             try_cast("Nombre total de lots à usage d’habitation, de bureaux ou de commerces" as integer),
             try_cast("nombre_total_de_lots_a_usage_d_habitation_de_bureaux_ou_de_comm" as integer)
         ) as nombre_total_lots_habitation_bureaux_commerces,
         coalesce(
+            try_cast("Nombre total de lots à usage d’habitation, de bureaux ou de commerces" as integer),
+            try_cast("nombre_total_de_lots_a_usage_d_habitation_de_bureaux_ou_de_comm" as integer)
+        ) as nombre_total_de_lots_a_usage_d_habitation_de_bureaux_ou_de_comm,
+        coalesce(
             try_cast("Nombre de lots à usage d’habitation" as integer),
             try_cast("nombre_de_lots_a_usage_d_habitation" as integer)
         ) as nombre_lots_habitation,
         coalesce(
+            try_cast("Nombre de lots à usage d’habitation" as integer),
+            try_cast("nombre_de_lots_a_usage_d_habitation" as integer)
+        ) as nombre_de_lots_a_usage_d_habitation,
+        coalesce(
             try_cast("Nombre de lots de stationnement" as integer),
             try_cast("nombre_de_lots_de_stationnement" as integer)
         ) as nombre_lots_stationnement,
+        coalesce(
+            try_cast("Nombre de lots de stationnement" as integer),
+            try_cast("nombre_de_lots_de_stationnement" as integer)
+        ) as nombre_de_lots_de_stationnement,
         coalesce(cast("Période de construction" as varchar), cast("periode_de_construction" as varchar)) as periode_de_construction,
         coalesce(cast("Code INSEE commune 1" as varchar), cast("code_insee_commune_1" as varchar)) as code_insee_commune_1,
         coalesce(cast("Code INSEE commune 2" as varchar), cast("code_insee_commune_2" as varchar)) as code_insee_commune_2,
@@ -122,7 +179,28 @@ normalized as (
         coalesce(
             try_cast("Nombre de parcelles cadastrales" as integer),
             try_cast("nombre_de_parcelles_cadastrales" as integer)
-        ) as nombre_parcelles_cadastrales,
+        ) as nombre_de_parcelles_cadastrales,
+        coalesce(cast("Préfixe 1" as varchar), cast("prefixe_1" as varchar)) as prefixe_1,
+        coalesce(cast("Section 1" as varchar), cast("section_1" as varchar)) as section_1,
+        coalesce(cast("Numéro parcelle 1" as varchar), cast("numero_parcelle_1" as varchar)) as numero_parcelle_1,
+        coalesce(
+            cast("Référence Cadastrale 1" as varchar),
+            cast("reference_cadastrale_1" as varchar)
+        ) as reference_cadastrale_1,
+        coalesce(cast("Préfixe 2" as varchar), cast("prefixe_2" as varchar)) as prefixe_2,
+        coalesce(cast("Section 2" as varchar), cast("section_2" as varchar)) as section_2,
+        coalesce(cast("Numéro parcelle 2" as varchar), cast("numero_parcelle_2" as varchar)) as numero_parcelle_2,
+        coalesce(
+            cast("Référence Cadastrale 2" as varchar),
+            cast("reference_cadastrale_2" as varchar)
+        ) as reference_cadastrale_2,
+        coalesce(cast("Préfixe 3" as varchar), cast("prefixe_3" as varchar)) as prefixe_3,
+        coalesce(cast("Section 3" as varchar), cast("section_3" as varchar)) as section_3,
+        coalesce(cast("Numéro parcelle 3" as varchar), cast("numero_parcelle_3" as varchar)) as numero_parcelle_3,
+        coalesce(
+            cast("Référence Cadastrale 3" as varchar),
+            cast("reference_cadastrale_3" as varchar)
+        ) as reference_cadastrale_3,
         coalesce(cast("nom_qp_2015" as varchar), cast("nom_qp" as varchar)) as nom_qp_2015,
         coalesce(cast("code_qp_2015" as varchar), cast("code_qp" as varchar)) as code_qp_2015,
         cast("nom_qp_2024" as varchar) as nom_qp_2024,
@@ -134,8 +212,18 @@ normalized as (
         coalesce(cast("Copro aidée" as varchar), cast("copro_aidee" as varchar)) as copro_aidee,
         coalesce(cast("Code Officiel Commune" as varchar), cast("code_officiel_commune" as varchar)) as code_officiel_commune,
         coalesce(cast("Nom Officiel Commune" as varchar), cast("nom_officiel_commune" as varchar)) as nom_officiel_commune,
+        coalesce(cast("Code Officiel EPCI" as varchar), cast("code_officiel_epci" as varchar)) as code_officiel_epci,
+        coalesce(cast("Nom Officiel EPCI" as varchar), cast("nom_officiel_epci" as varchar)) as nom_officiel_epci,
         coalesce(cast("Code Officiel Département" as varchar), cast("code_officiel_departement" as varchar)) as code_officiel_departement,
         coalesce(cast("Nom Officiel Département" as varchar), cast("nom_officiel_departement" as varchar)) as nom_officiel_departement,
+        coalesce(
+            cast("Code Officiel Arrondissement Commune" as varchar),
+            cast("code_officiel_arrondissement_commune" as varchar)
+        ) as code_officiel_arrondissement_commune,
+        coalesce(
+            cast("Nom Officiel Arrondissement Commune" as varchar),
+            cast("nom_officiel_arrondissement_commune" as varchar)
+        ) as nom_officiel_arrondissement_commune,
         coalesce(cast("Code Officiel Région" as varchar), cast("code_officiel_region" as varchar)) as code_officiel_region,
         coalesce(cast("Nom Officiel Région" as varchar), cast("nom_officiel_region" as varchar)) as nom_officiel_region,
         cast("source_file" as varchar) as source_file,
