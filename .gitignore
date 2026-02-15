@@ -6,7 +6,7 @@ Thumbs.db
 *~
 
 # Windows ADS sidecar files from downloaded CSVs
-*.Zone.Identifier
+*Zone.Identifier
 
 # Python
 __pycache__/
@@ -25,3 +25,8 @@ logs/
 # DuckDB local files
 *.duckdb
 *.duckdb.wal
+
+# Data files
+*.csv
+*.parquet
+*.xlsx
