@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: raw_rnic
+    description: Donnees RNIC en CSV par annee dans data/raw.
+    schema: raw
+    tables:
+      - name: rnic2022_csv
+        description: "Fichiers CSV RNIC 2022 (glob: data/raw/2022/*.csv)."
+        meta:
+          file_glob: "data/raw/2022/*.csv"
+      - name: rnic2023_csv
+        description: "Fichiers CSV RNIC 2023 (glob: data/raw/2023/*.csv)."
+        meta:
+          file_glob: "data/raw/2023/*.csv"
+      - name: rnic2024_csv
+        description: "Fichiers CSV RNIC 2024 (glob: data/raw/2024/*.csv)."
+        meta:
+          file_glob: "data/raw/2024/*.csv"
+      - name: rnic2025_csv
+        description: "Fichiers CSV RNIC 2025 (glob: data/raw/2025/*.csv)."
+        meta:
+          file_glob: "data/raw/2025/*.csv"
+
+models:
+  - name: rnic2022
+    description: Vue bronze consolidant tous les CSV RNIC 2022.
+  - name: rnic2023
+    description: Vue bronze consolidant tous les CSV RNIC 2023.
+  - name: rnic2024
+    description: Vue bronze consolidant tous les CSV RNIC 2024.
+  - name: rnic2025
+    description: Vue bronze consolidant tous les CSV RNIC 2025.
