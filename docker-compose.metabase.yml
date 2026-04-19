@@ -14,7 +14,7 @@ services:
     ports:
       - "${MB_PORT:-3000}:3000"
     volumes:
-      - ./data/prod:/data:ro
+      - ./data/prod:/home/metabase/data
     depends_on:
       - postgres
     restart: unless-stopped

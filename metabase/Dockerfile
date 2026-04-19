@@ -1,15 +1,30 @@
-FROM metabase/metabase:v0.60.1.4
+FROM eclipse-temurin:21-jre-jammy
 
-USER root
+# Build arguments for versions
+ARG METABASE_VERSION=0.58.9
+ARG METABASE_DUCKDB_DRIVER_VERSION=1.4.3.1
 
-RUN apk add --no-cache libstdc++ ca-certificates curl
+ENV MB_PLUGINS_DIR=/home/metabase/plugins/
 
-RUN mkdir -p /plugins \
-  && chown -R 2000:2000 /plugins
+RUN groupadd -r metabase && useradd -r -g metabase metabase
 
-ADD https://github.com/MotherDuck-Open-Source/metabase_duckdb_driver/releases/latest/download/duckdb.metabase-driver.jar \
-  /plugins/duckdb.metabase-driver.jar
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN chown 2000:2000 /plugins/duckdb.metabase-driver.jar
+# /home/metabase/plugins will hold the plugins
+# /home/metabase/data is not strictly necessary, can be a place to store data files (.duckdb, .parquet, etc)
+RUN mkdir -p /home/metabase/plugins /home/metabase/data && \
+    chown -R metabase:metabase /home/metabase
 
-USER 2000
+WORKDIR /home/metabase
+ADD --chown=metabase:metabase https://downloads.metabase.com/v${METABASE_VERSION}/metabase.jar /home/metabase/
+ADD --chown=metabase:metabase https://github.com/motherduckdb/metabase_duckdb_driver/releases/download/${METABASE_DUCKDB_DRIVER_VERSION}/duckdb.metabase-driver.jar /home/metabase/plugins/
+
+# Ensure proper file permissions
+RUN chmod 755 /home/metabase/metabase.jar && \
+    chmod 755 /home/metabase/plugins/duckdb.metabase-driver.jar
+
+USER metabase
+
+CMD ["java", "-jar", "/home/metabase/metabase.jar"]
