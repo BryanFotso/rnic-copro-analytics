@@ -22,6 +22,9 @@ dbt_packages/
 target/
 logs/
 
+# env files
+.env
+
 # DuckDB local files
 *.duckdb
 *.duckdb.wal
