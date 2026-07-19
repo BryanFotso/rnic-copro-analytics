@@ -2,35 +2,214 @@ version: 2
 
 sources:
   - name: raw_rnic
-    description: Donnees RNIC en CSV par annee dans data/raw.
+    description: >
+      Inventaire des instantanes trimestriels du Registre national d'immatriculation
+      des coproprietes (RNIC) livres sous forme de fichiers CSV par l'Anah. Ces
+      sources documentent les fichiers externes lus directement par DuckDB ; elles
+      ne correspondent pas a des tables physiques dans un schema `raw`.
     schema: raw
+    config:
+      meta:
+        owner: Anah
+        source_documentation: docs/anah-fiche-descriptive-rnc-open-data-versionoctobre2025.pdf
+        ingestion_grain: Un fichier CSV par trimestre d'observation
     tables:
-      - name: rnic2022_csv
-        description: "Fichiers CSV RNIC 2022 (glob: data/raw/2022/*.csv)."
+      - name: rnic_2022_t2_csv
+        description: Instantane RNIC du deuxieme trimestre 2022, premier trimestre disponible dans le projet.
         config:
           meta:
-            file_glob: "data/raw/2022/*.csv"
-      - name: rnic2023_csv
-        description: "Fichiers CSV RNIC 2023 (glob: data/raw/2023/*.csv)."
+            file_path: data/raw/2022/RNIC T2 2022.csv
+            source_year: 2022
+            source_quarter: 2
+            observed_rows: 526064
+            observed_raw_columns: 38
+      - name: rnic_2022_t3_csv
+        description: Instantane RNIC du troisieme trimestre 2022.
         config:
           meta:
-            file_glob: "data/raw/2023/*.csv"
-      - name: rnic2024_csv
-        description: "Fichiers CSV RNIC 2024 (glob: data/raw/2024/*.csv)."
+            file_path: data/raw/2022/RNIC T3 2022.csv
+            source_year: 2022
+            source_quarter: 3
+            observed_rows: 532655
+            observed_raw_columns: 38
+      - name: rnic_2022_t4_csv
+        description: Instantane RNIC du quatrieme trimestre 2022, avec ajout des informations cadastrales.
         config:
           meta:
-            file_glob: "data/raw/2024/*.csv"
-      - name: rnic2025_csv
-        description: "Fichiers CSV RNIC 2025 (glob: data/raw/2025/*.csv)."
+            file_path: data/raw/2022/RNIC T4 2022.csv
+            source_year: 2022
+            source_quarter: 4
+            observed_rows: 541842
+            observed_raw_columns: 51
+      - name: rnic_2023_t1_csv
+        description: Instantane RNIC du premier trimestre 2023, enrichi des indicateurs ACV et PVD.
         config:
           meta:
-            file_glob: "data/raw/2025/*.csv"
+            file_path: data/raw/2023/RNIC T1 2023.csv
+            source_year: 2023
+            source_quarter: 1
+            observed_rows: 550858
+            observed_raw_columns: 53
+      - name: rnic_2023_t2_csv
+        description: Instantane RNIC du deuxieme trimestre 2023, enrichi de references cadastrales et territoriales.
+        config:
+          meta:
+            file_path: data/raw/2023/RNIC T2 2023.csv
+            source_year: 2023
+            source_quarter: 2
+            observed_rows: 558657
+            observed_raw_columns: 67
+      - name: rnic_2023_t3_csv
+        description: Instantane RNIC du troisieme trimestre 2023.
+        config:
+          meta:
+            file_path: data/raw/2023/RNIC T3 2023.csv
+            source_year: 2023
+            source_quarter: 3
+            observed_rows: 564911
+            observed_raw_columns: 67
+      - name: rnic_2023_t4_csv
+        description: Instantane RNIC du quatrieme trimestre 2023.
+        config:
+          meta:
+            file_path: data/raw/2023/RNIC T4 2023.csv
+            source_year: 2023
+            source_quarter: 4
+            observed_rows: 572542
+            observed_raw_columns: 67
+      - name: rnic_2024_t1_csv
+        description: Instantane RNIC du premier trimestre 2024, incluant les dates d'immatriculation et de mise a jour.
+        config:
+          meta:
+            file_path: data/raw/2024/RNIC T1 2024.csv
+            source_year: 2024
+            source_quarter: 1
+            observed_rows: 579482
+            observed_raw_columns: 72
+      - name: rnic_2024_t2_csv
+        description: Instantane RNIC du deuxieme trimestre 2024, avec evolution du libelle SIRET.
+        config:
+          meta:
+            file_path: data/raw/2024/RNIC T2 2024.csv
+            source_year: 2024
+            source_quarter: 2
+            observed_rows: 585657
+            observed_raw_columns: 72
+      - name: rnic_2024_t3_csv
+        description: Instantane RNIC du troisieme trimestre 2024.
+        config:
+          meta:
+            file_path: data/raw/2024/RNIC T3 2024.csv
+            source_year: 2024
+            source_quarter: 3
+            observed_rows: 592498
+            observed_raw_columns: 72
+      - name: rnic_2024_t4_csv
+        description: Instantane RNIC du quatrieme trimestre 2024, incluant les indicateurs PDP.
+        config:
+          meta:
+            file_path: data/raw/2024/RNIC T4 2024.csv
+            source_year: 2024
+            source_quarter: 4
+            observed_rows: 599631
+            observed_raw_columns: 71
+      - name: rnic_2025_t1_csv
+        description: Instantane RNIC du premier trimestre 2025.
+        config:
+          meta:
+            file_path: data/raw/2025/RNIC T1 2025.csv
+            source_year: 2025
+            source_quarter: 1
+            observed_rows: 604287
+            observed_raw_columns: 71
+      - name: rnic_2025_t2_csv
+        description: Instantane RNIC du deuxieme trimestre 2025.
+        config:
+          meta:
+            file_path: data/raw/2025/RNIC T2 2025.csv
+            source_year: 2025
+            source_quarter: 2
+            observed_rows: 615411
+            observed_raw_columns: 71
+      - name: rnic_2025_t3_csv
+        description: Instantane RNIC du troisieme trimestre 2025, dont les en-tetes sont normalises en snake_case.
+        config:
+          meta:
+            file_path: data/raw/2025/RNIC T3 2025.csv
+            source_year: 2025
+            source_quarter: 3
+            observed_rows: 619402
+            observed_raw_columns: 72
+      - name: rnic_2025_t4_csv
+        description: Instantane RNIC du quatrieme trimestre 2025, dernier fichier actuellement integre.
+        config:
+          meta:
+            file_path: data/raw/2025/RNIC T4 2025.csv
+            source_year: 2025
+            source_quarter: 4
+            observed_rows: 626702
+            observed_raw_columns: 72
+
 models:
-  - name: rnic2022
-    description: Vue bronze consolidant tous les CSV RNIC 2022.
-  - name: rnic2023
-    description: Vue bronze consolidant tous les CSV RNIC 2023.
-  - name: rnic2024
-    description: Vue bronze consolidant tous les CSV RNIC 2024.
-  - name: rnic2025
-    description: Vue bronze consolidant tous les CSV RNIC 2025.
+  - name: rnic_2022_t2
+    description: &bronze_model_description >
+      Vue bronze d'un unique instantane trimestriel RNIC. Elle conserve sans
+      nettoyage les colonnes du CSV en texte et ajoute le fichier, l'annee et le
+      trimestre d'observation pour assurer la tracabilite. Une ligne correspond a
+      une ligne du fichier source ; les lignes sans numero d'immatriculation sont
+      volontairement conservees a ce niveau.
+    columns: &bronze_metadata_columns
+      - name: source_file
+        description: Chemin relatif exact du fichier CSV dont provient la ligne.
+        data_tests:
+          - not_null
+      - name: source_year
+        description: Annee de l'instantane, derivee du fichier et non d'une date metier RNIC.
+        data_tests:
+          - not_null
+      - name: source_quarter
+        description: Trimestre de l'instantane, derive du fichier et non de la date d'immatriculation.
+        data_tests:
+          - not_null
+  - name: rnic_2022_t3
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
+  - name: rnic_2022_t4
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
+  - name: rnic_2023_t1
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
+  - name: rnic_2023_t2
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
+  - name: rnic_2023_t3
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
+  - name: rnic_2023_t4
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
+  - name: rnic_2024_t1
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
+  - name: rnic_2024_t2
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
+  - name: rnic_2024_t3
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
+  - name: rnic_2024_t4
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
+  - name: rnic_2025_t1
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
+  - name: rnic_2025_t2
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
+  - name: rnic_2025_t3
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
+  - name: rnic_2025_t4
+    description: *bronze_model_description
+    columns: *bronze_metadata_columns
